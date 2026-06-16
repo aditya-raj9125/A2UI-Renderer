@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg text-textPrimary font-sans transition-colors duration-200 ease-in-out antialiased;
+  }
+}
+
+/* Green Orb */
+.green-orb {
+  background: radial-gradient(circle at 35% 30%, #ffffff55, var(--color-accent), var(--color-accent-hover));
+  box-shadow: 0 0 40px 10px rgba(34, 197, 94, 0.25);
+  border-radius: 50%;
+  animation: pulse-orb 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dark .green-orb {
+  box-shadow: 0 0 50px 15px rgba(34, 197, 94, 0.35);
+}
+
+@keyframes pulse-orb {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+    box-shadow: 0 0 55px 15px rgba(34, 197, 94, 0.4);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Fade-in and Stagger transitions */
+.a2ui-fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: a2uiFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes a2uiFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,23 @@
+:root {
+  --color-bg: #f0faf5;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-accent: #22c55e;
+  --color-accent-hover: #16a34a;
+  --color-orb-start: #22c55e;
+  --color-orb-end: #86efac;
+}
+
+.dark {
+  --color-bg: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-border: #2d2d2d;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-accent: #22c55e;
+  --color-accent-hover: #16a34a;
+  --color-orb-start: #22c55e;
+  --color-orb-end: #86efac;
+}
