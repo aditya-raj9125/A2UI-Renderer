@@ -84,4 +84,10 @@
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Enable smooth kinetic scroll on iOS/Safari devices */
+.overflow-y-auto, .overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+
 

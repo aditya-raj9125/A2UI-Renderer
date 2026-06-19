@@ -75,7 +75,7 @@ export const ChatInterface: React.FC = () => {
                 <span className="text-[11px] font-semibold text-textSecondary/40 uppercase select-none">
                   AuraUI is typing...
                 </span>
-                <div className="max-w-[70%] rounded-2xl rounded-tl-none px-4.5 py-4 bg-surface border border-border flex flex-col gap-2.5">
+                <div className="max-w-[70%] rounded-2xl rounded-tl-none px-5 py-4 bg-surface border border-border flex flex-col gap-2.5">
                   <div className="h-3 w-48 bg-border rounded-full" />
                   <div className="h-3 w-64 bg-border rounded-full" />
                   <div className="h-3 w-32 bg-border rounded-full" />

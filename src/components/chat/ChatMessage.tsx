@@ -15,6 +15,65 @@ interface ChatMessageProps {
 }
 
 /**
+ * Helper to compress consecutive newlines, strip markdown asterisks, and format bullets/bold text.
+ */
+const formatAgentText = (text: string) => {
+  if (!text) return null;
+
+  // Compress 3 or more consecutive newlines down to 2
+  const compressedGaps = text.replace(/\n{3,}/g, "\n\n");
+  const paragraphs = compressedGaps.split("\n\n");
+
+  return paragraphs.map((para, paraIdx) => {
+    const lines = para.split("\n");
+
+    return (
+      <div key={paraIdx} className="mb-2.5 last:mb-0 flex flex-col gap-1">
+        {lines.map((line, lineIdx) => {
+          let processedLine = line.trim();
+          if (!processedLine) return null;
+
+          // Check for bullet list indicators
+          let isBullet = false;
+          if (processedLine.startsWith("* ") || processedLine.startsWith("- ")) {
+            isBullet = true;
+            processedLine = processedLine.substring(2).trim();
+          }
+
+          // Parse bold markdown markers (**text**)
+          const parts = processedLine.split(/\*\*(.*?)\*\*/g);
+          const renderedLine = parts.map((part, partIdx) => {
+            if (partIdx % 2 === 1) {
+              return (
+                <strong key={partIdx} className="font-semibold text-textPrimary">
+                  {part}
+                </strong>
+              );
+            }
+            return part;
+          });
+
+          if (isBullet) {
+            return (
+              <div key={lineIdx} className="flex items-start gap-1.5 text-[13.5px] leading-relaxed text-textPrimary pl-2">
+                <span className="text-accent select-none">•</span>
+                <span className="flex-1">{renderedLine}</span>
+              </div>
+            );
+          }
+
+          return (
+            <p key={lineIdx} className="text-[13.5px] leading-relaxed text-textPrimary whitespace-pre-wrap">
+              {renderedLine}
+            </p>
+          );
+        })}
+      </div>
+    );
+  });
+};
+
+/**
  * Chat bubble supporting animations and A2UI integrations.
  */
 export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onInteraction }) => {
@@ -60,25 +119,23 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onInteraction
 
       {/* Message Bubble */}
       <div
-        className={`w-full rounded-2xl px-4.5 py-3 shadow-sm border transition-all duration-200 ${
+        className={`w-full transition-all duration-200 ${
           a2uiPayload ? "max-w-[95%] sm:max-w-[90%]" : "max-w-[85%] sm:max-w-[75%]"
         } ${
           isUser
-            ? "bg-accent/10 border-accent/20 text-textPrimary rounded-tr-none font-medium"
-            : "bg-surface border-border text-textPrimary rounded-tl-none"
+            ? "bg-accent/10 border-accent/20 text-textPrimary rounded-2xl rounded-tr-none font-medium px-6 py-3.5 shadow-sm border"
+            : "bg-transparent text-textPrimary rounded-none px-0 py-1 shadow-none border-0"
         }`}
       >
         {isUser ? (
           renderUserContent()
         ) : (
           <div className="flex flex-col gap-3 font-medium">
-            {displayedText && (
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">{displayedText}</p>
-            )}
+            {displayedText && formatAgentText(displayedText)}
 
             {/* Inline A2UI Render blocks */}
             {a2uiPayload && (
-              <div className="mt-2.5 pt-2 border-t border-border/40 flex flex-col gap-3 w-full">
+              <div className="mt-3 flex flex-col gap-3 w-full">
                 {a2uiPayload.components.map((comp, idx) => (
                   <div
                     key={comp.id}

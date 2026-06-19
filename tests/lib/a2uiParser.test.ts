@@ -54,4 +54,44 @@ Hope this helps!`;
     expect(result.a2uiPayload).not.toBeNull();
     expect(result.a2uiPayload?.components[0].id).toBe("error-malformed-json");
   });
+
+  it("should normalize and clean invalid or missing variant/size options", () => {
+    const rawResponse = `
+<a2ui>
+{
+  "version": "1.0",
+  "components": [
+    {
+      "id": "pricing-container",
+      "type": "container",
+      "layout": "horizontal",
+      "children": [
+        {
+          "id": "basic-plan-card",
+          "type": "card"
+        },
+        {
+          "id": "pro-plan-card",
+          "type": "card",
+          "variant": "primary"
+        },
+        {
+          "id": "btn-test",
+          "type": "button",
+          "label": "Click me"
+        }
+      ]
+    }
+  ]
+}
+</a2ui>`;
+    const result = parseAgentResponse(rawResponse);
+    expect(result.a2uiPayload).not.toBeNull();
+    const container = result.a2uiPayload?.components[0] as any;
+    expect(container.children[0].variant).toBe("default"); // Missing variant defaults to "default"
+    expect(container.children[1].variant).toBe("elevated"); // Invalid variant "primary" mapped to "elevated"
+    expect(container.children[2].variant).toBe("primary"); // Missing button variant defaults to "primary"
+    expect(container.children[2].size).toBe("md"); // Missing button size defaults to "md"
+  });
 });
+

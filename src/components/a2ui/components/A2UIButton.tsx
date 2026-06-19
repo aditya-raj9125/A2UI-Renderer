@@ -57,13 +57,13 @@ export const A2UIButton: React.FC<A2UIButtonProps> = ({ component }) => {
   let sizeClasses = "";
   switch (size) {
     case "sm":
-      sizeClasses = "px-3 py-1.5 text-xs font-semibold rounded-lg gap-1.5";
+      sizeClasses = "px-3.5 py-1.5 text-xs font-semibold rounded-lg gap-1.5";
       break;
     case "md":
-      sizeClasses = "px-4.5 py-2 text-sm font-semibold rounded-xl gap-2";
+      sizeClasses = "px-5 py-2 text-sm font-semibold rounded-xl gap-2";
       break;
     case "lg":
-      sizeClasses = "px-6 py-3 text-base font-semibold rounded-2xl gap-2.5";
+      sizeClasses = "px-7 py-3 text-base font-semibold rounded-2xl gap-2.5";
       break;
   }
 
@@ -71,7 +71,7 @@ export const A2UIButton: React.FC<A2UIButtonProps> = ({ component }) => {
     <button
       onClick={handleClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center font-sans tracking-wide active:scale-98 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed select-none cursor-pointer ${variantClasses} ${sizeClasses}`}
+      className={`inline-flex items-center justify-center font-sans tracking-wide leading-none active:scale-98 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed select-none cursor-pointer ${variantClasses} ${sizeClasses}`}
       aria-label={label}
     >
       {IconComponent && <IconComponent className="w-4 h-4" />}

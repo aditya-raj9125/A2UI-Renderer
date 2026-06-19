@@ -36,9 +36,9 @@ export const HeroSection: React.FC<HeroSectionProps> = () => {
         What shall we create today?
       </h2>
 
-      <p className="text-xs md:text-[13px] text-textSecondary max-w-lg font-normal leading-relaxed px-4">
-        AuraUI is an Agent-to-User Interface (A2UI) system. I can dynamically render rich,
-        <br className="hidden sm:inline" /> interactive dashboards, analytics, forms, and charts directly in your chat.
+      <p className="text-xs md:text-[13px] text-textSecondary max-w-lg font-normal leading-relaxed px-4 mx-auto">
+        AuraUI is an Agent-to-User Interface (A2UI) platform that dynamically renders
+        interactive dashboards, forms, and charts directly inside your chat.
       </p>
     </div>
   );

@@ -53,12 +53,12 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled = 
           placeholder="How can AuraUI help you today?"
           rows={1}
           disabled={disabled}
-          className="w-full px-4.5 pt-4 pb-2 bg-transparent text-textPrimary text-sm md:text-[15px] outline-none resize-none min-h-[56px] max-h-[220px] leading-relaxed placeholder:text-textSecondary/40 border-0 focus:ring-0"
+          className="w-full pl-6 pr-6 pt-3 pb-1 bg-transparent text-textPrimary text-base md:text-[15px] outline-none resize-none min-h-[38px] max-h-[220px] leading-relaxed placeholder:text-textSecondary/40 border-0 focus:ring-0 no-scrollbar"
           aria-label="Prompt text input"
         />
 
         {/* Bottom toolbar inside input area - Clean and right-aligned action icons */}
-        <div className="flex items-center justify-end px-4.5 pb-3 pt-1">
+        <div className="flex items-center justify-end px-6 pb-2.5 pt-0.5">
           {/* Action Icons */}
           <div className="flex items-center gap-3 text-textSecondary">
             <button
