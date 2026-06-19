@@ -55,12 +55,14 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onInteraction
     <div className={`flex flex-col ${isUser ? "items-end" : "items-start"} gap-1.5 w-full max-w-4xl mx-auto px-4`}>
       {/* Sender Header */}
       <span className="text-[11px] font-semibold text-textSecondary/50 uppercase tracking-wider select-none">
-        {isUser ? "You" : "ThinkAI"} • {timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+        {isUser ? "You" : "AuraUI"} • {timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </span>
 
       {/* Message Bubble */}
       <div
-        className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4.5 py-3 shadow-sm border ${
+        className={`w-full rounded-2xl px-4.5 py-3 shadow-sm border transition-all duration-200 ${
+          a2uiPayload ? "max-w-[95%] sm:max-w-[90%]" : "max-w-[85%] sm:max-w-[75%]"
+        } ${
           isUser
             ? "bg-accent/10 border-accent/20 text-textPrimary rounded-tr-none font-medium"
             : "bg-surface border-border text-textPrimary rounded-tl-none"

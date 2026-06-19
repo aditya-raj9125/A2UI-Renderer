@@ -12,13 +12,13 @@ interface HeroSectionProps {
 /**
  * Empty-state landing header.
  */
-export const HeroSection: React.FC<HeroSectionProps> = ({ userName = "Milovan" }) => {
+export const HeroSection: React.FC<HeroSectionProps> = () => {
   // Determine greeting based on current time
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return "Good morning";
-    if (hour < 17) return "Good afternoon";
-    return "Good evening";
+    if (hour < 12) return "Good morning!";
+    if (hour < 17) return "Good afternoon!";
+    return "Good evening!";
   };
 
   return (
@@ -30,15 +30,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ userName = "Milovan" }
       </div>
 
       <h1 className="text-3xl md:text-[34px] font-semibold tracking-tight text-textPrimary leading-tight">
-        {getGreeting()}, {userName}
+        {getGreeting()}
       </h1>
-      <h2 className="text-2.5xl md:text-[30px] font-semibold tracking-tight text-textPrimary mt-1 mb-3.5 leading-tight">
-        Can I help you with anything?
+      <h2 className="text-2.5xl md:text-[30px] font-semibold tracking-tight text-textPrimary mt-1.5 mb-3.5 leading-tight">
+        What shall we create today?
       </h2>
 
-      <p className="text-xs md:text-[13px] text-textSecondary max-w-[280px] sm:max-w-md font-normal leading-relaxed">
-        Choose a prompt below or write your own to start
-        <br className="hidden sm:inline" /> chatting with ThinkAI
+      <p className="text-xs md:text-[13px] text-textSecondary max-w-lg font-normal leading-relaxed px-4">
+        AuraUI is an Agent-to-User Interface (A2UI) system. I can dynamically render rich,
+        <br className="hidden sm:inline" /> interactive dashboards, analytics, forms, and charts directly in your chat.
       </p>
     </div>
   );

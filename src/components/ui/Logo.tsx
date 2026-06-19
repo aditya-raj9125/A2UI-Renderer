@@ -10,9 +10,9 @@ import React from "react";
  */
 export const Logo: React.FC = () => {
   return (
-    <div className="flex items-center gap-2.5 select-none">
-      <div className="w-7 h-7 rounded-lg bg-surface border border-border flex items-center justify-center shadow-sm bg-gradient-to-br from-surface to-bg">
-        {/* Sleek chat bubble with intelligent core dot */}
+    <div className="flex items-center gap-2 select-none">
+      <div className="w-7 h-7 rounded-lg bg-surface border border-border flex items-center justify-center shadow-sm bg-gradient-to-br from-surface to-bg relative overflow-hidden">
+        {/* Layered components icon representing dynamic A2UI layouts */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,12 +25,12 @@ export const Logo: React.FC = () => {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-1.074-.765 5.99 5.99 0 0 1 1.524-2.83C4.07 16.186 3 14.22 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+            d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25A2.25 2.25 0 0 1 13.5 8.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
           />
         </svg>
       </div>
       <span className="text-base font-bold tracking-tight text-textPrimary">
-        ThinkAI
+        AuraUI
       </span>
     </div>
   );

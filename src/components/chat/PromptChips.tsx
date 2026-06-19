@@ -1,28 +1,28 @@
 /**
  * @file PromptChips.tsx
- * @description Suggestions pill-button row with 16 A2UI-focused prompts and refresh mechanics.
+ * @description Suggestions pill-button row with 16 A2UI-focused prompts and robust word-wrapping styles.
  */
 
 import React, { useState } from "react";
 import { RotateCw } from "lucide-react";
 
 const ALL_PROMPTS = [
-  "Get fresh perspectives on tricky problems",
-  "Brainstorm creative ideas",
-  "Rewrite message for maximum impact",
-  "Summarize key points",
-  "Create a sales analytics dashboard with a bar graph",
-  "Design a user registration form with username and password",
-  "Generate a checklist for a project launch",
-  "Show a client details card with primary and ghost buttons",
-  "Plot a line chart showing company growth over 6 months",
-  "Build a customer feedback form with select and checkboxes",
-  "Create an interactive product search interface",
-  "Show a project status board with multiple cards",
-  "Render a pie chart showing traffic channel breakdown",
-  "Design a pricing checkout layout with selection options",
-  "Create a team collaboration tasks container",
-  "Generate a settings panel with checkbox configurations",
+  "Render a real-time sales dashboard with a bar chart",
+  "Generate a user signup form with validation options",
+  "Show a project roadmap checklist for product release",
+  "Create a product inventory card with interaction buttons",
+  "Plot a line chart tracking system latency over 24 hours",
+  "Build a customer satisfaction survey with select dropdowns",
+  "Create a team task board using horizontal layout containers",
+  "Render a pie chart representing marketing budget allocation",
+  "Generate a contact details card with primary and ghost actions",
+  "Create a settings panel with checkboxes and toggle elements",
+  "Design an analytics container combining text and a line graph",
+  "Build a checkout form with payment selection options",
+  "Create a feedback card with action button events",
+  "Render a grid layout displaying system health metrics",
+  "Generate a line graph showing website pageviews",
+  "Create an employee onboarding form with select inputs"
 ];
 
 interface PromptChipsProps {
@@ -42,7 +42,6 @@ export const PromptChips: React.FC<PromptChipsProps> = ({ onChipSelect }) => {
     
     // Shuffle prompts
     const shuffled = [...ALL_PROMPTS].sort(() => 0.5 - Math.random());
-    // Ensure we pick 4 distinct prompts
     setCurrentPrompts(shuffled.slice(0, 4));
     
     setTimeout(() => {
@@ -51,15 +50,15 @@ export const PromptChips: React.FC<PromptChipsProps> = ({ onChipSelect }) => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-6 px-4 flex flex-col items-start">
+    <div className="w-full max-w-4xl mx-auto mb-6 px-6 sm:px-8 flex flex-col items-start">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 w-full">
         {currentPrompts.map((prompt, index) => (
           <button
             key={index}
             onClick={() => onChipSelect(prompt)}
-            className="p-4.5 text-left text-[13px] md:text-sm font-medium border border-cardBorder bg-cardBg hover:bg-surface hover:border-borderHover text-textPrimary rounded-xl transition-all duration-200 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 min-h-[82px] flex items-center leading-snug cursor-pointer group"
+            className="w-full px-4 py-3 text-center justify-center text-xs md:text-[12.5px] font-medium border border-cardBorder bg-cardBg hover:bg-surface hover:border-borderHover text-textPrimary rounded-xl transition-all duration-200 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 min-h-[84px] flex items-center leading-normal cursor-pointer group whitespace-normal break-words"
           >
-            <span className="group-hover:text-accent transition-colors duration-150">
+            <span className="group-hover:text-accent transition-colors duration-150 w-full break-words text-center">
               {prompt}
             </span>
           </button>

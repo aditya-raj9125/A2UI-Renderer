@@ -18,7 +18,7 @@ import { ThemeToggle } from "../ui/ThemeToggle";
  * Shell container controlling navigation, empty-state toggles and message panels.
  */
 export const ChatInterface: React.FC = () => {
-  const { messages, loading, error, sendMessage, sendInteraction } = useChat();
+  const { messages, loading, error, sendMessage, sendInteraction, clearChat } = useChat();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +35,14 @@ export const ChatInterface: React.FC = () => {
     <div className="flex flex-col h-screen radial-glow-bg transition-colors duration-200 ease-in-out font-sans overflow-hidden">
       {/* Top Navigation Bar */}
       <header className="flex items-center justify-between px-6 py-4 bg-transparent z-10 select-none">
-        <Logo />
+        <button
+          onClick={clearChat}
+          className="focus:outline-none cursor-pointer transition-transform duration-200 active:scale-95 flex items-center text-left"
+          title="Go to home dashboard"
+          aria-label="AuraUI home"
+        >
+          <Logo />
+        </button>
         <div className="flex items-center">
           <ThemeToggle />
         </div>
@@ -52,19 +59,21 @@ export const ChatInterface: React.FC = () => {
         ) : (
           /* Active Scrollable Conversation Thread */
           <div className="flex-1 overflow-y-auto py-6 flex flex-col gap-6 scroll-smooth">
-            {messages.map((message) => (
-              <ChatMessage
-                key={message.id}
-                message={message}
-                onInteraction={sendInteraction}
-              />
-            ))}
+            {messages
+              .filter((m) => !m.text || (!m.text.startsWith("[BUTTON_CLICK]") && !m.text.startsWith("[FORM_SUBMIT]")))
+              .map((message) => (
+                <ChatMessage
+                  key={message.id}
+                  message={message}
+                  onInteraction={sendInteraction}
+                />
+              ))}
 
             {/* Simulated Agent Typing skeleton loader */}
             {loading && (
               <div className="flex flex-col items-start gap-1.5 w-full max-w-4xl mx-auto px-4 animate-pulse">
                 <span className="text-[11px] font-semibold text-textSecondary/40 uppercase select-none">
-                  ThinkAI is typing...
+                  AuraUI is typing...
                 </span>
                 <div className="max-w-[70%] rounded-2xl rounded-tl-none px-4.5 py-4 bg-surface border border-border flex flex-col gap-2.5">
                   <div className="h-3 w-48 bg-border rounded-full" />
