@@ -88,7 +88,7 @@ export const A2UIGraph: React.FC<A2UIGraphProps> = ({ component }) => {
                 color: "var(--color-text-primary)",
               }}
             />
-            <Bar dataKey="value" fill={chartColor} radius={[4, 4, 0, 0]} />
+            <Bar dataKey="value" fill={chartColor} radius={[4, 4, 0, 0]} minPointSize={0} />
           </BarChart>
         );
 
