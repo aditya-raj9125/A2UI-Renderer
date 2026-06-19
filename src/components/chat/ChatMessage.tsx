@@ -5,7 +5,6 @@
 
 import React from "react";
 import { Message } from "../../types/chat.types";
-import { useStreamingText } from "../../hooks/useStreamingText";
 import { A2UIRenderer } from "../a2ui/A2UIRenderer";
 import { A2UIInteractionEvent } from "../a2ui/types/a2ui.types";
 
@@ -81,8 +80,8 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onInteraction
 
   const isUser = sender === "user";
 
-  // Stream text character-by-character for agent replies
-  const displayedText = isUser ? text : useStreamingText(text || "", 10);
+  // Render agent replies directly without buggy client-side typing simulation
+  const displayedText = text || "";
 
   // Formatting helpers for interaction messages in chat view
   const renderUserContent = () => {
