@@ -3,9 +3,8 @@
  * @description Data visualization component displaying bar, line or pie charts using Recharts.
  */
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  ResponsiveContainer,
   BarChart,
   Bar,
   LineChart,
@@ -32,14 +31,41 @@ const PIE_COLORS = ["#22c55e", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4
  */
 export const A2UIGraph: React.FC<A2UIGraphProps> = ({ component }) => {
   const { chartType, title, data, color } = component;
-
   const chartColor = color || "var(--color-accent)";
 
-  const renderChart = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 180 });
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        setDimensions({
+          width: containerRef.current.clientWidth,
+          height: window.innerWidth < 768 ? 180 : 220,
+        });
+      }
+    };
+
+    // Run initial measurement
+    updateDimensions();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateDimensions();
+    });
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  const renderChart = (width: number, height: number) => {
     switch (chartType) {
       case "bar":
         return (
-          <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <BarChart width={width} height={height} data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <XAxis
               dataKey="label"
               stroke="var(--color-text-secondary)"
@@ -68,7 +94,7 @@ export const A2UIGraph: React.FC<A2UIGraphProps> = ({ component }) => {
 
       case "line":
         return (
-          <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <LineChart width={width} height={height} data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <XAxis
               dataKey="label"
               stroke="var(--color-text-secondary)"
@@ -104,7 +130,7 @@ export const A2UIGraph: React.FC<A2UIGraphProps> = ({ component }) => {
 
       case "pie":
         return (
-          <PieChart>
+          <PieChart width={width} height={height}>
             <Pie
               data={data}
               cx="50%"
@@ -150,10 +176,12 @@ export const A2UIGraph: React.FC<A2UIGraphProps> = ({ component }) => {
           {title}
         </h4>
       )}
-      <div className="w-full h-[180px] md:h-[220px]">
-        <ResponsiveContainer width="100%" height="100%">
-          {renderChart()}
-        </ResponsiveContainer>
+      <div ref={containerRef} className="w-full h-[180px] md:h-[220px] flex items-center justify-center overflow-hidden">
+        {dimensions.width > 0 ? (
+          renderChart(dimensions.width, dimensions.height)
+        ) : (
+          <div className="text-xs text-textSecondary/40 animate-pulse">Loading chart...</div>
+        )}
       </div>
     </div>
   );
