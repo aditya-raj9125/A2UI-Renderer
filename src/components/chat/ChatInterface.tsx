@@ -13,7 +13,6 @@ import { ChatMessage } from "./ChatMessage";
 // UI Shared
 import { Logo } from "../ui/Logo";
 import { ThemeToggle } from "../ui/ThemeToggle";
-import { Avatar } from "../ui/Avatar";
 
 /**
  * Shell container controlling navigation, empty-state toggles and message panels.
@@ -37,9 +36,8 @@ export const ChatInterface: React.FC = () => {
       {/* Top Navigation Bar */}
       <header className="flex items-center justify-between px-6 py-4 bg-transparent z-10 select-none">
         <Logo />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center">
           <ThemeToggle />
-          <Avatar />
         </div>
       </header>
 
@@ -47,7 +45,7 @@ export const ChatInterface: React.FC = () => {
       <main className="flex-1 flex flex-col justify-between overflow-hidden relative">
         {!hasMessages ? (
           /* Landing Empty State Dashboard */
-          <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto w-full max-w-4xl mx-auto py-8">
+          <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto no-scrollbar w-full max-w-4xl mx-auto py-4">
             <HeroSection userName="Milovan" />
             <PromptChips onChipSelect={sendMessage} />
           </div>
