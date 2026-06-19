@@ -33,11 +33,11 @@ export const ChatInterface: React.FC = () => {
   const hasMessages = messages.length > 0;
 
   return (
-    <div className="flex flex-col h-screen bg-bg/50 backdrop-blur-3xl transition-colors duration-200 ease-in-out font-sans overflow-hidden">
+    <div className="flex flex-col h-screen radial-glow-bg transition-colors duration-200 ease-in-out font-sans overflow-hidden">
       {/* Top Navigation Bar */}
-      <header className="flex items-center justify-between px-6 py-4.5 bg-surface/85 backdrop-blur-md border-b border-border z-10 select-none">
+      <header className="flex items-center justify-between px-6 py-4 bg-transparent z-10 select-none">
         <Logo />
-        <div className="flex items-center gap-4.5">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
           <Avatar />
         </div>

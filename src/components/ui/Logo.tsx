@@ -11,25 +11,25 @@ import React from "react";
 export const Logo: React.FC = () => {
   return (
     <div className="flex items-center gap-2.5 select-none">
-      <div className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center shadow-md shadow-accent/20">
-        {/* Subtle grid/brain SVG symbol */}
+      <div className="w-7 h-7 rounded-lg bg-surface border border-border flex items-center justify-center shadow-sm bg-gradient-to-br from-surface to-bg">
+        {/* Sleek chat bubble with intelligent core dot */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={2}
+          strokeWidth={2.5}
           stroke="currentColor"
-          className="w-5 h-5 text-white"
+          className="w-4 h-4 text-accent"
           aria-hidden="true"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M9.813 15.904L9 21m0 0l-.813-5.096m.813 5.1V15m10.187 0.904L21 21m0 0l-.813-5.096m.813 5.1V15M12 18.75V15m-5.25-6h10.5m-10.5 3h10.5m-11.25-6h12m-12 9h12"
+            d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-1.074-.765 5.99 5.99 0 0 1 1.524-2.83C4.07 16.186 3 14.22 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
           />
         </svg>
       </div>
-      <span className="text-lg font-bold tracking-tight text-textPrimary">
+      <span className="text-base font-bold tracking-tight text-textPrimary">
         ThinkAI
       </span>
     </div>

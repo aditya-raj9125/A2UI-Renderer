@@ -10,27 +10,26 @@
   }
 }
 
-/* Green Orb */
+/* Green Orb - Glossy 3D Sphere */
 .green-orb {
-  background: radial-gradient(circle at 35% 30%, #ffffff55, var(--color-accent), var(--color-accent-hover));
-  box-shadow: 0 0 40px 10px rgba(34, 197, 94, 0.25);
+  background: radial-gradient(circle at 50% 15%, #bdfa7d 0%, #22c55e 55%, #15803d 85%, #052e16 100%);
+  box-shadow: inset 0 -8px 20px rgba(0, 0, 0, 0.5), inset 0 8px 15px rgba(255, 255, 255, 0.6), 0 10px 40px rgba(34, 197, 94, 0.35);
   border-radius: 50%;
-  animation: pulse-orb 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  position: relative;
+  overflow: hidden;
+  animation: float-and-glow 5s ease-in-out infinite;
 }
 
 .dark .green-orb {
-  box-shadow: 0 0 50px 15px rgba(34, 197, 94, 0.35);
+  box-shadow: inset 0 -8px 20px rgba(0, 0, 0, 0.6), inset 0 8px 15px rgba(255, 255, 255, 0.5), 0 12px 45px rgba(34, 197, 94, 0.45);
 }
 
-@keyframes pulse-orb {
+@keyframes float-and-glow {
   0%, 100% {
-    transform: scale(1);
-    filter: brightness(1);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: scale(1.03);
-    filter: brightness(1.1);
-    box-shadow: 0 0 55px 15px rgba(34, 197, 94, 0.4);
+    transform: translateY(-6px) scale(1.02);
   }
 }
 
@@ -66,3 +65,13 @@
     transform: translateY(0);
   }
 }
+
+/* Premium radial background glow */
+.radial-glow-bg {
+  background: radial-gradient(circle at 50% 30%, rgba(34, 197, 94, 0.06) 0%, var(--color-bg) 65%);
+}
+
+.dark .radial-glow-bg {
+  background: radial-gradient(circle at 50% 28%, rgba(34, 197, 94, 0.1) 0%, #0c0d0f 55%, var(--color-bg) 100%);
+}
+

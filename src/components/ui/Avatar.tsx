@@ -11,7 +11,7 @@ import React from "react";
 export const Avatar: React.FC = () => {
   return (
     <div
-      className="w-8 h-8 rounded-full bg-border flex items-center justify-center font-medium text-sm text-textSecondary select-none"
+      className="w-7 h-7 rounded-full bg-border hover:bg-borderHover border border-border flex items-center justify-center font-semibold text-xs text-textSecondary hover:text-textPrimary select-none transition-colors duration-150 cursor-pointer"
       aria-label="User profile"
     >
       M
