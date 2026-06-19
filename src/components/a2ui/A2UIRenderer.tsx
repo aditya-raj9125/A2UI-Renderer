@@ -154,6 +154,8 @@ const renderComponent = (component: A2UIComponent): React.ReactNode => {
  * Core component parsing, validating and rendering A2UI payloads inside ErrorBoundary wrappers.
  */
 export const A2UIRenderer: React.FC<A2UIRendererProps> = ({ payload, onInteraction }) => {
+  const [showJson, setShowJson] = useState(false);
+
   // Validate incoming payload using Zod schema
   const validation = validateA2UIPayload(payload);
 
@@ -167,8 +169,25 @@ export const A2UIRenderer: React.FC<A2UIRendererProps> = ({ payload, onInteracti
   return (
     <A2UIErrorBoundary payload={payload}>
       <A2UIInteractionContext.Provider value={{ onInteraction }}>
-        <div className="w-full flex flex-col gap-4">
-          {payload.components.map((component) => renderComponent(component))}
+        <div className="w-full flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-4">
+            {payload.components.map((component) => renderComponent(component))}
+          </div>
+
+          <div className="flex flex-col items-start mt-1">
+            <button
+              onClick={() => setShowJson(!showJson)}
+              className="text-xs font-semibold text-textSecondary/60 hover:text-accent transition-colors duration-150 flex items-center gap-1.5 cursor-pointer select-none bg-surface/30 hover:bg-surface/60 border border-border/40 hover:border-border px-3 py-1.5 rounded-xl"
+            >
+              <span>{showJson ? "Hide JSON Schema" : "Show JSON Schema"}</span>
+            </button>
+
+            {showJson && (
+              <pre className="mt-2.5 w-full p-3.5 bg-surface/50 border border-border/60 rounded-2xl text-[11px] text-textSecondary font-mono overflow-x-auto max-h-[250px] leading-relaxed no-scrollbar">
+                {JSON.stringify(payload, null, 2)}
+              </pre>
+            )}
+          </div>
         </div>
       </A2UIInteractionContext.Provider>
     </A2UIErrorBoundary>
